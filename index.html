@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>KeyboSwitcher</title>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  <script src="fabric.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+      // Notice there is no 'import' statement. 'tf' is available on the index-page
+      // because of the script tag above.
+
+      // Define a model for linear regression.
+      const model = tf.sequential();
+      model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+      // Prepare the model for training: Specify the loss and the optimizer.
+      model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+      // Generate some synthetic data for training.
+      const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+      const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+
+      // Train the model using the data.
+      model.fit(xs, ys).then(() => {
+        // Use the model to do inference on a data point the model hasn't seen before:
+        // Open the browser devtools to see the output
+        model.predict(tf.tensor2d([5], [1, 1])).print();
+      });
+   </script>
+   <style>
+ .table tbody tr td{
+   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; 
+ }
+  table thead tr th {
+   font-family : Helvetica, Arial, sans-serif;
+   font-size: 24px;
+   font-weight: 400;
+   line-height: 26.4px;
+ }
+     .sym {
+       font-size :40px
+     }
+     
+     .slider {
+     -webkit-appearance: none;
+     width: 230px;
+     height: 2px;
+     border-radius: 5px;
+     background: #d3d3d3;
+     outline: none;
+     opacity: 0.7;
+     -webkit-transition: .2s;
+     transition: opacity .2s;
+ }
+ 
+ .slider:hover {
+     opacity: 1;
+ }
+ 
+ .slider::-webkit-slider-thumb {
+     -webkit-appearance: none;
+     appearance: none;
+     width: 25px;
+     height: 25px;
+     border-radius: 50%;
+     background: #007AFF;
+     cursor: pointer;
+ }
+ 
+ .slider::-moz-range-thumb {
+     width: 25px;
+     height: 25px;
+     border-radius: 50%;
+     background: #007AFF;
+     cursor: pointer;
+ }
+ label,
+textarea {
+    font-family : Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 80px;
+    line-height: 2.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    margin-left: 90px;
+}
+
+
+
+label {
+    display: block;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+label,
+textarea2 {
+    font-family : Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+textarea2 {
+    padding: 80px;
+    line-height: 2.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    margin-left: 90px;
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+    margin-left: 90px;
+}
+
+ </style>
+ </head>
+ <body>
+ <nav class="navbar navbar-expand-sm bg-light navbar-light">
+   <!-- Brand/logo -->
+   <a class="navbar-brand" href="#"><h1>KEYBO<small>SWITCHER</small></h1></a>
+   </nav>
+ <div class="container-fluid"> 
+ 
+ <blockquote class="blockquote text-justify" style="margin:30px;">
+    <p>Did you write a large text in Arabic and then discover that you wrote it in an incomprehensible language because you did not convert the keyboard?
+      KeyboSwitcher is a simple tool that helps get your Arabic text without writing it from the beginning.  <a href="https://github.com/MartinThoma/HASY">dataset</a>. It achieves 2% top 5 error. The accuracy could be improved
+ but I focused on making the model light with around 110K parameters. The table on the right will show the top 5 predictions. </p>
+     <footer class="blockquote-footer">ANASS EL HOUD</footer>
+   </blockquote>
+ </div>
+ <label for="story">Let's help you convert your work:</label>
+
+ <textarea id="story" name="story"
+           rows="5" cols="33">
+Your incomprehensible text...
+ </textarea>
+
+ <textarea2 id="story" name="story"
+           rows="5" cols="33">
+Your incomprehensible text...
+ </textarea2>
+
+ </div>
+  <p id = 'latex' style ='display:none;></p>
+ </body>
+ </html>
